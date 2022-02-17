@@ -1,0 +1,6 @@
+{
+  "type": "service_account",
+  "projectId": "projectId",
+  "privateKey": "privateKey",
+  "clientEmail": "xxx@example.com"
+}
