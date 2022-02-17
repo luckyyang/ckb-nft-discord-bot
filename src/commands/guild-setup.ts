@@ -1,6 +1,6 @@
 import type { CommandInteraction, GuildMember, Role, User } from "discord.js";
-
 import { Discord, Slash, SlashChoice, SlashGroup, SlashOption } from "discordx";
+import db from "../database";
 
 export type GuildRule = {
   version: string;
@@ -22,6 +22,11 @@ export type GuildRule = {
   };
   roleName: string;
 };
+
+export interface GuildConfig {
+  rules: GuildRule[];
+}
+
 
 @Discord()
 @SlashGroup({ name: "guild-setup" })
@@ -112,22 +117,22 @@ export abstract class Group {
       roleName: role.name,
     };
 
-    // const guildConfigDoc = await db
-    //   .collection("guildConfigs")
-    //   .doc(interaction.guildId)
-    //   .get();
+    const guildConfigDoc = await db
+      .collection("guildConfigs")
+      .doc(interaction.guildId)
+      .get();
 
-    // const guildConfig: GuildConfig = guildConfigDoc.exists
-    //   ? (guildConfigDoc.data() as GuildConfig)
-    //   : { rules: [] };
+    const guildConfig: GuildConfig = guildConfigDoc.exists
+      ? (guildConfigDoc.data() as GuildConfig)
+      : { rules: [] };
 
-    // guildConfig.rules.push(newRule);
+    guildConfig.rules.push(newRule);
 
-    // // update the db
-    // await db
-    //   .collection("guildConfigs")
-    //   .doc(interaction.guildId)
-    //   .set(guildConfig);
+    // update the db
+    await db
+      .collection("guildConfigs")
+      .doc(interaction.guildId)
+      .set(guildConfig);
 
     // reply
     await interaction.reply({
