@@ -2,11 +2,6 @@ import type { CommandInteraction, GuildMember, Role, User } from "discord.js";
 
 import { Discord, Slash, SlashChoice, SlashGroup, SlashOption } from "discordx";
 
-enum TextChoices {
-  "Good Bye" = "GoodBye",
-  Hello = "Hello",
-}
-
 export type GuildRule = {
   version: string;
   nft: {
@@ -15,13 +10,13 @@ export type GuildRule = {
       quantity: number;
     };
   };
-  cw20: {
-    [cw20Address: string]: {
+  udt: {  // user defined token
+    [udtAddress: string]: {
       quantity: number;
     };
   };
   nativeToken: {
-    [denom: string]: {
+    [address: string]: {
       quantity: number;
     };
   };
@@ -30,11 +25,9 @@ export type GuildRule = {
 
 @Discord()
 @SlashGroup({ name: "guild-setup" })
-// @SlashGroup({ name: "maths", root: "guild-setup" })
-// @SlashGroup({ name: "text", root: "guild-setup" })
 export abstract class Group {
   @Slash("add-nft-rule")
-  // @SlashGroup({ name: "maths", root: "guild-setup" })
+  @SlashGroup({ name: "guild-setup" })
   async addNFTRule(
     @SlashOption("nft-address", {
       description: "The contract address against which to check for nft ownership for this rule."
@@ -93,13 +86,13 @@ export abstract class Group {
     // const quantity = rawQuantity ? rawQuantity : 1;
 
     // check if the bot role is above the verified role
-    const lunarAssistantRole = interaction?.guild?.roles.cache.find(
+    const botRole = interaction?.guild?.roles.cache.find(
       (role) => role.name == "Rostra guild contributor"
     )!;
 
-    if (role?.position > lunarAssistantRole.position) {
+    if (role?.position > botRole.position) {
       await interaction.reply({
-        content: `Please update the role hierarchy with 'Lunar Assistant' above of ${role.name} and try again.`,
+        content: `Please update the role hierarchy with 'Rostra Guild Assistant' above of ${role.name} and try again.`,
         ephemeral: true,
       });
       return;
@@ -114,7 +107,7 @@ export abstract class Group {
           quantity,
         },
       },
-      cw20: {},
+      udt: {},  // user defined token
       nativeToken: {},
       roleName: role.name,
     };
