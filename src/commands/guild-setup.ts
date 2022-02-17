@@ -1,4 +1,5 @@
-import type { CommandInteraction, MessageAttachment, GuildMember, Role, User } from "discord.js";
+import type { CommandInteraction, GuildMember, Role, User } from "discord.js";
+import { MessageAttachment } from "discord.js";
 import { Discord, Slash, SlashChoice, SlashGroup, SlashOption } from "discordx";
 import db from "../database";
 import { GuildConfig, GuildRule } from "../shared/firestoreTypes";
