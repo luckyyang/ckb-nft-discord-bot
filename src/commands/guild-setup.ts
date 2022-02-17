@@ -142,38 +142,4 @@ export abstract class Group {
       ephemeral: true,
     });
   }
-
-  @Slash("add")
-  @SlashGroup({ name: "maths", root: "guild-setup" })
-  add(
-    @SlashOption("x", { description: "x value" }) x: number,
-    @SlashOption("y", { description: "y value" }) y: number,
-    interaction: CommandInteraction
-  ): void {
-    interaction.reply(String(x + y));
-  }
-
-  @Slash("multiply")
-  @SlashGroup({ name: "maths", root: "guild-setup" })
-  multiply(
-    @SlashOption("x", { description: "x value" }) x: number,
-    @SlashOption("y", { description: "y value" }) y: number,
-    interaction: CommandInteraction
-  ): void {
-    interaction.reply(String(x * y));
-  }
-
-  @Slash("hello")
-  @SlashGroup({ name: "text", root: "guild-setup" })
-  hello(
-    @SlashChoice(TextChoices)
-    @SlashOption("text", {
-      type: "STRING",
-    })
-    text: TextChoices,
-    interaction: CommandInteraction
-  ): void {
-    interaction.reply(text);
-  }
-
 }
