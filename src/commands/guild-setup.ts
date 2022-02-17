@@ -39,15 +39,17 @@ export abstract class Group {
     @SlashOption("nft-address", {
       description: "The contract address against which to check for nft ownership for this rule."
     }) nftAddress: string,
-    @SlashOption("role", {
-      description: "The role to give to users which meet this rule."
-    }) role: Role,
     @SlashOption("quantity", {
       description: "The quantity of matching nfts that a user must hold in order to meet the rule."
     }) quantity: number,
     @SlashOption("token-ids", {
-      description: "A list of token ids that the rule is restricted to."
+      description: "A list of token ids that the rule is restricted to.",
+      type: "STRING",
     }) tokenIds: string[],
+    @SlashOption("role", {
+      description: "The role to give to users which meet this rule.",
+      type: "MENTIONABLE"
+    }) role: Role,
     interaction: CommandInteraction
   ): Promise<void> {
     // configure the server settings
