@@ -5,3 +5,4 @@ package-lock.json
 .vscode
 .env
 firebase.json
+firebase.ts
