@@ -1,6 +1,6 @@
 import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
 import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
-import serviceAccount from "../config/firebase";
+import serviceAccount from "../config/firebase.json";
 
 initializeApp({
   credential: cert(serviceAccount)
