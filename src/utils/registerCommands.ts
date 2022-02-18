@@ -35,6 +35,10 @@ export const registerCommands = async (guild: Guild) => {
     return command.name == "guild-setup";
   });
 
+  if (!configureCommand) {
+    throw new Error("Could not find guild-setup command!");
+  }
+
   // add command permission
   await configureCommand!.permissions.add({ permissions });
 };
