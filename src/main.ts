@@ -43,6 +43,10 @@ client.once("ready", async () => {
   //  await client.clearApplicationCommands(
   //    ...client.guilds.cache.map((g) => g.id)
   //  );
+  client.guilds.cache.forEach((guild) => {
+    console.log(`Registering commands for ${guild.name}`);
+    registerCommands(guild);
+  });
 
   console.log("Bot started");
 });
