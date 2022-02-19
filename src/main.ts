@@ -3,12 +3,10 @@ import { Intents, Interaction, Message } from "discord.js";
 import { Client } from "discordx";
 import { dirname, importx } from "@discordx/importer";
 import { Koa } from "@discordx/koa";
-import { registerCommands } from "./utils/registerCommands";
+import setupPermissions from "./utils/setupPermissions";
 import * as dotenv from "dotenv";
 
 dotenv.config();
-
-console.log('1111 process.env.BOT_MANAGER_ROLE: ', process.env.BOT_MANAGER_ROLE)
 
 export const client = new Client({
   simpleCommand: {
@@ -45,14 +43,14 @@ client.once("ready", async () => {
   //  );
   client.guilds.cache.forEach((guild) => {
     console.log(`Registering commands for ${guild.name}`);
-    registerCommands(guild);
+    setupPermissions(guild);
   });
 
   console.log("Bot started");
 });
 
 // When the bot is added to a server, configure the slash commands
-client.on("guildCreate", registerCommands);
+client.on("guildCreate", setupPermissions);
 
 client.on("interactionCreate", (interaction: Interaction) => {
   client.executeInteraction(interaction);

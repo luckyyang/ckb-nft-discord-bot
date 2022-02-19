@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 console.log('BOT_MANAGER_ROLE: ', process.env.BOT_MANAGER_ROLE)
-export const registerCommands = async (guild: Guild) => {
+export default async (guild: Guild) => {
   // Check if an existing lunar commander role exists in the server
   const existingManagerRole = guild.roles.cache.find(
     (role) => role.name === process.env.BOT_MANAGER_ROLE
