@@ -4,14 +4,18 @@ import { Discord, Slash, SlashChoice, SlashGroup, SlashOption } from "discordx";
 import db from "../database";
 import { GuildConfig, GuildRule } from "../shared/firestoreTypes";
 import { guildRuleToSimpleRule } from "../utils/guildRuleHelpers";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+const BOT_ROLE = process.env.BOT_ROLE;
 
 const slashGroupName = "guild-setup";
-const BOT_ROLE = "Rostra guild contributor";
 
 @Discord()
 @SlashGroup({ name: slashGroupName })
 export abstract class Group {
-  @Slash("add-nft-rule", { defaultPermission: false })
+  @Slash("add-nft-rule")
   @SlashGroup({ name: slashGroupName })
   async addNFTRule(
     @SlashOption("nft-address", {
