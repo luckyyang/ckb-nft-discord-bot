@@ -11,7 +11,7 @@ const BOT_ROLE = "Rostra guild contributor";
 @Discord()
 @SlashGroup({ name: slashGroupName })
 export abstract class Group {
-  @Slash("add-nft-rule")
+  @Slash("add-nft-rule", { defaultPermission: false })
   @SlashGroup({ name: slashGroupName })
   async addNFTRule(
     @SlashOption("nft-address", {
