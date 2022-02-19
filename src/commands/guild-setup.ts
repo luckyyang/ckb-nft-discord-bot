@@ -9,6 +9,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const BOT_ROLE = process.env.BOT_ROLE;
+console.log('guild setup command BOT_ROLE: ', process.env.BOT_ROLE)
 
 const slashGroupName = "guild-setup";
 
