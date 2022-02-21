@@ -15,7 +15,7 @@ const slashGroupName = "guild-setup";
 
 @Discord()
 @SlashGroup({ name: slashGroupName })
-export abstract class Group {
+export abstract class GuildSetup {
   @Slash("add-nft-rule")
   @SlashGroup({ name: slashGroupName })
   async addNFTRule(
