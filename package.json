@@ -40,7 +40,7 @@
     "@koa/router": "^10.1.1",
     "@nervina-labs/flashsigner": "^0.2.2",
     "@nervosnetwork/ckb-sdk-rpc": "^0.102.1",
-    "@nervosnetwork/ckb-sdk-utils": "^0.102.1",
+    "@nervosnetwork/ckb-sdk-utils": "^0.103.0",
     "discord.js": "^13.6.0",
     "discordx": "^9.2.5",
     "dotenv": "^16.0.0",
